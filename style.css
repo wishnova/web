@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    max-width: 600px;
+}
+
+/* Balloons */
+.balloons {
+    position: relative;
+    height: 150px;
+    margin-bottom: 30px;
+}
+
+.balloon {
+    position: absolute;
+    font-size: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.balloon-1 {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.balloon-2 {
+    left: 25%;
+    animation-delay: 0.5s;
+}
+
+.balloon-3 {
+    left: 40%;
+    animation-delay: 1s;
+}
+
+.balloon-4 {
+    left: 55%;
+    animation-delay: 0.5s;
+}
+
+.balloon-5 {
+    left: 70%;
+    animation-delay: 0s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+/* Title */
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: bounce 1s ease-in-out;
+}
+
+.subtitle {
+    font-size: 24px;
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Card */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.message {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.8;
+}
+
+/* Cake */
+.cake {
+    font-size: 80px;
+    margin: 30px 0;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer */
+.footer {
+    font-size: 20px;
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 36px;
+    }
+    
+    .subtitle {
+        font-size: 20px;
+    }
+    
+    .message {
+        font-size: 16px;
+    }
+    
+    .cake {
+        font-size: 60px;
+    }
+}
