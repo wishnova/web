@@ -1,10 +1,517 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Monika! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff006e;
+            --secondary: #00d9ff;
+            --accent: #ffd60a;
+            --dark: #1a1a2e;
+            --light: #fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            border-radius: 50% 50% 50% 50%;
+            bottom: -100px;
+            animation: float 6s infinite ease-in;
+            opacity: 0.8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .balloon:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .balloon-1 {
+            background: linear-gradient(135deg, #ff006e, #ff4081);
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .balloon-2 {
+            background: linear-gradient(135deg, #00d9ff, #00b8d4);
+            left: 25%;
+            animation-delay: 1s;
+        }
+
+        .balloon-3 {
+            background: linear-gradient(135deg, #ffd60a, #ffb700);
+            left: 40%;
+            animation-delay: 2s;
+        }
+
+        .balloon-4 {
+            background: linear-gradient(135deg, #06ffa5, #00d084);
+            left: 55%;
+            animation-delay: 1.5s;
+        }
+
+        .balloon-5 {
+            background: linear-gradient(135deg, #ff006e, #ff4081);
+            left: 70%;
+            animation-delay: 2.5s;
+        }
+
+        .balloon-6 {
+            background: linear-gradient(135deg, #00d9ff, #00b8d4);
+            left: 85%;
+            animation-delay: 0.5s;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            background: #888;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0% {
+                bottom: -100px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+
+        /* Page styles */
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            z-index: 10;
+        }
+
+        .page.active {
+            opacity: 1;
+            z-index: 20;
+        }
+
+        /* Page 1 - Welcome */
+        .page-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .welcome-content {
+            text-align: center;
+            animation: slideInDown 0.8s ease;
+        }
+
+        .welcome-content h1 {
+            font-size: 4rem;
+            color: var(--light);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .welcome-content p {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-weight: 600;
+            animation: bounce 2s infinite;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-next {
+            background: var(--accent);
+            color: var(--dark);
+            box-shadow: 0 10px 25px rgba(255, 214, 10, 0.4);
+        }
+
+        .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 214, 10, 0.6);
+        }
+
+        /* Page 2 - Message */
+        .page-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .message-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .message-content h2 {
+            font-size: 3rem;
+            color: var(--light);
+            margin-bottom: 30px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .message-content p {
+            font-size: 1.3rem;
+            color: var(--light);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .heart {
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+            margin: 0 10px;
+        }
+
+        /* Page 3 - Final Celebration */
+        .page-3 {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            overflow: hidden;
+        }
+
+        .celebration-content {
+            text-align: center;
+            animation: popIn 0.6s ease;
+        }
+
+        .celebration-content h2 {
+            font-size: 4rem;
+            color: var(--light);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .celebration-content p {
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* Page navigation */
+        .page-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 30;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--light);
+            transform: scale(1.3);
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--light);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            z-index: 30;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .welcome-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .welcome-content p {
+                font-size: 1.3rem;
+            }
+
+            .message-content h2 {
+                font-size: 2rem;
+            }
+
+            .message-content p {
+                font-size: 1.1rem;
+            }
+
+            .celebration-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .celebration-content p {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
 <body>
+    <!-- Balloons -->
+    <div class="balloon balloon-1"></div>
+    <div class="balloon balloon-2"></div>
+    <div class="balloon balloon-3"></div>
+    <div class="balloon balloon-4"></div>
+    <div class="balloon balloon-5"></div>
+    <div class="balloon balloon-6"></div>
 
-<h1>Hello World</h1>
-<h2>This is Nitin Kashyap</h1>
-<p>This is my first webpage.</p>
+    <!-- Page 1: Welcome -->
+    <div class="page page-1 active">
+        <button class="back-btn" onclick="goToPage(0)" style="display:none;">← Back</button>
+        <div class="container">
+            <div class="welcome-content">
+                <h1>🎉 Happy Birthday! 🎉</h1>
+                <p>Dear Monika</p>
+                <p>✨ December 5th ✨</p>
+                <div class="nav-buttons">
+                    <button class="btn btn-next" onclick="goToPage(1)">See the Message →</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Page 2: Message -->
+    <div class="page page-2">
+        <button class="back-btn" onclick="goToPage(0)">← Back</button>
+        <div class="container">
+            <div class="message-content">
+                <h2>A Special Day for a Special Person</h2>
+                <p>
+                    On your special day, I want you to know how amazing you are! 
+                    <span class="heart">❤️</span>
+                </p>
+                <p>
+                    You bring so much joy, laughter, and love into everyone's lives. 
+                    Your kindness and warmth are truly inspirational.
+                </p>
+                <p>
+                    May this year bring you endless happiness, incredible adventures, 
+                    and all the dreams you wish for!
+                </p>
+                <div class="nav-buttons" style="margin-top: 40px;">
+                    <button class="btn btn-next" onclick="goToPage(2)">Celebrate! 🎊 →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Celebration -->
+    <div class="page page-3">
+        <button class="back-btn" onclick="goToPage(0)">← Back</button>
+        <div class="container">
+            <div class="celebration-content">
+                <h2>Wishing You the Best!</h2>
+                <p>Happy Birthday Monika! 🎂🎈</p>
+                <div class="nav-buttons">
+                    <button class="btn btn-next" onclick="location.reload()">Start Again 🔄</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page indicator dots -->
+    <div class="page-indicator">
+        <div class="dot active" onclick="goToPage(0)"></div>
+        <div class="dot" onclick="goToPage(1)"></div>
+        <div class="dot" onclick="goToPage(2)"></div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+
+        function goToPage(page) {
+            const pages = document.querySelectorAll('.page');
+            const dots = document.querySelectorAll('.dot');
+
+            pages.forEach((p, index) => {
+                p.classList.remove('active');
+                dots[index].classList.remove('active');
+            });
+
+            pages[page].classList.add('active');
+            dots[page].classList.add('active');
+            currentPage = page;
+
+            // Generate confetti on celebration page
+            if (page === 2) {
+                createConfetti();
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#ff006e', '#00d9ff', '#ffd60a', '#06ffa5'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                document.querySelector('.page-3').appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentPage < 2) {
+                goToPage(currentPage + 1);
+            }
+            if (e.key === 'ArrowLeft' && currentPage > 0) {
+                goToPage(currentPage - 1);
+            }
+        });
+    </script>
 </body>
 </html>
