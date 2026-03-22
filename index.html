@@ -22,32 +22,40 @@
             font-family: 'DM Sans', sans-serif;
             background: var(--deep);
             overflow: hidden;
-            height: 100vh;
+            height: 100dvh;
             width: 100vw;
-            cursor: none;
+            cursor: auto;
+            touch-action: pan-y;
         }
 
-        .cursor {
-            position: fixed;
-            width: 18px; height: 18px;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-            transition: width 0.2s, height 0.2s;
-        }
+        /* Hide cursor elements on touch devices */
+        .cursor, .cursor-trail { display: none; }
 
-        .cursor-trail {
-            position: fixed;
-            width: 7px; height: 7px;
-            background: var(--rose);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            opacity: 0.55;
+        @media (hover: hover) and (pointer: fine) {
+            body { cursor: none; }
+            .cursor {
+                display: block;
+                position: fixed;
+                width: 18px; height: 18px;
+                background: var(--gold);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                transform: translate(-50%, -50%);
+                mix-blend-mode: difference;
+                transition: width 0.2s, height 0.2s;
+            }
+            .cursor-trail {
+                display: block;
+                position: fixed;
+                width: 7px; height: 7px;
+                background: var(--rose);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9998;
+                transform: translate(-50%, -50%);
+                opacity: 0.55;
+            }
         }
 
         /* Stars */
@@ -99,6 +107,9 @@
             display: flex; align-items: center; justify-content: center;
             z-index: 10; opacity: 0; pointer-events: none;
             transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1);
+            height: 100dvh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .page.active { opacity: 1; pointer-events: all; }
 
