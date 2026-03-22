@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Happy Birthday Shraddha! 🎉</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -224,8 +224,8 @@
         }
 
         .p2-wrap {
-            max-width: 700px; width: 90%;
-            padding: 56px 50px;
+            max-width: 700px; width: 92%;
+            padding: 48px 44px;
         }
 
         .accent-line {
@@ -270,9 +270,9 @@
         }
         .card p {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3.8vw, 1.2rem);
             color: rgba(255,255,255,0.78);
-            line-height: 1.9;
+            line-height: 1.85;
             text-align: center;
             font-weight: 300;
         }
@@ -404,7 +404,7 @@
 
         /* Nav dots */
         .dots-nav {
-            position: fixed; bottom: 30px; left: 50%;
+            position: fixed; bottom: calc(30px + env(safe-area-inset-bottom)); left: 50%;
             transform: translateX(-50%);
             display: flex; gap: 10px; z-index: 100;
         }
@@ -422,11 +422,48 @@
         @keyframes slideUp   { from { opacity:0; transform:translateY(28px);  } to { opacity:1; transform:translateY(0); } }
         @keyframes fadeIn    { from { opacity:0; } to { opacity:1; } }
 
-        @media (max-width: 600px) {
-            .p2-wrap { padding: 38px 20px; }
-            .card { padding: 26px 22px; }
-            .chips { grid-template-columns: repeat(2,1fr); }
-            .row { flex-direction: column; align-items: center; }
+        /* ── MOBILE OPTIMIZED ── */
+        @media (max-width: 480px) {
+            /* Page 1 */
+            .date-pill   { font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 16px; padding: 5px 14px; }
+            .p1-headline { font-size: clamp(2.4rem, 12vw, 3.5rem); margin-bottom: 4px; }
+            .p1-name     { font-size: clamp(2rem, 10vw, 2.8rem); margin-bottom: 14px; }
+            .p1-tagline  { font-size: 0.92rem; margin-bottom: 28px; }
+            .cta-btn     { padding: 13px 34px; font-size: 0.82rem; }
+            .ring:nth-child(1) { width: 170px !important; height: 170px !important; }
+            .ring:nth-child(2) { width: 260px !important; height: 260px !important; }
+            .ring:nth-child(3) { width: 350px !important; height: 350px !important; }
+
+            /* Page 2 — main fix */
+            .page-2      { align-items: flex-start; padding-top: 16px; padding-bottom: 64px; overflow-y: auto; }
+            .p2-wrap     { width: 96%; padding: 20px 14px; }
+            .accent-line { margin-bottom: 16px; }
+            .p2-title    { font-size: clamp(1.15rem, 5.5vw, 1.6rem); margin-bottom: 16px; }
+            .card        { padding: 18px 15px; margin-bottom: 14px; border-radius: 16px; }
+            .card::before{ font-size: 5rem; top: -10px; }
+            .card p      { font-size: clamp(0.92rem, 3.5vw, 1rem); line-height: 1.75; }
+            .card p + p  { margin-top: 12px; }
+            .tags        { gap: 6px; margin-bottom: 18px; }
+            .tag         { font-size: 0.7rem; padding: 5px 10px; }
+            .btn-ghost, .btn-solid { padding: 11px 22px; font-size: 0.78rem; }
+
+            /* Page 3 */
+            .cake-emoji  { font-size: 3.2rem; margin-bottom: 8px; }
+            .p3-h        { font-size: clamp(1.9rem, 10vw, 3rem); }
+            .p3-sub      { font-size: 1.05rem; margin-bottom: 20px; }
+            .chips       { grid-template-columns: repeat(2,1fr); gap: 7px; max-width: 300px; margin-bottom: 22px; }
+            .chip        { font-size: 0.68rem; padding: 8px 9px; }
+            .dots-nav    { bottom: 16px; }
+        }
+
+        @media (min-width: 481px) and (max-width: 600px) {
+            .page-2   { align-items: flex-start; padding-top: 20px; padding-bottom: 64px; overflow-y: auto; }
+            .p2-wrap  { max-width: 100%; padding: 28px 20px; }
+            .p2-title { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+            .card     { padding: 22px 18px; }
+            .card p   { font-size: clamp(0.95rem, 3.5vw, 1.05rem); }
+            .chips    { grid-template-columns: repeat(2,1fr); }
+            .row      { flex-wrap: wrap; justify-content: center; gap: 10px; }
         }
     </style>
 </head>
@@ -457,11 +494,12 @@
 <div class="page page-2" id="page-1">
     <div class="p2-wrap">
         <div class="accent-line"></div>
-        <h2 class="p2-title">For someone truly <em>special</em></h2>
+        <h2 class="p2-title">A Special Day for a <em>Special Person</em></h2>
         <div class="card">
-            <p>On your special day, the world feels a little brighter — because you're in it. Your smile, your kindness, and your beautiful spirit light up every room you walk into.</p>
-            <p>May this year shower you with endless joy, beautiful moments, and every dream your heart holds dear. You deserve nothing but the absolute best.</p>
-            <p>Here's to you — today and every day. 🌸</p>
+            <p>On your special day, I just want to say how truly special you are. ❤️</p>
+            <p>You're not only intelligent and hardworking, but also someone who inspires the people around you with your passion and dedication. The way you're chasing your dream of becoming a Full Stack Web Developer is really admirable.</p>
+            <p>I truly believe you will achieve everything you're aiming for. Keep believing in yourself, keep learning, and keep shining. 🌸</p>
+            <p>Wishing you happiness, success, and many amazing opportunities ahead. 🚀💻</p>
         </div>
         <div class="tags">
             <span class="tag">🌺 Joy</span>
@@ -602,6 +640,21 @@ document.addEventListener('keydown', e => {
     if (e.key==='ArrowRight' && current<2) goToPage(current+1);
     if (e.key==='ArrowLeft'  && current>0) goToPage(current-1);
 });
+
+// Touch swipe support
+let touchStartX = 0, touchStartY = 0;
+document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+}, { passive: true });
+document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+        if (dx < 0 && current < 2) goToPage(current + 1);
+        if (dx > 0 && current > 0) goToPage(current - 1);
+    }
+}, { passive: true });
 </script>
 </body>
 </html>
